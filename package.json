@@ -3,11 +3,11 @@
   "license": "MPL-2.0",
   "scripts": {
     "start": "npm-run-all -p start:client start:server",
-    "start:client": "cross-env NODE_ENV=development vite build --watch",
+    "start:client": "cross-env NODE_ENV=production vite build --watch",
     "start:server": "nodemon --watch src/server --ext 'ts,tsx' --exec 'ts-node src/server'",
     "build": "npm-run-all -s build:tsc build:vite",
     "build:tsc": "tsc",
-    "build:vite": "cross-env NODE_ENV=development vite build",
+    "build:vite": "cross-env NODE_ENV=production vite build",
     "format": "npm-run-all -s format:*",
     "format:prettier": "prettier --write './**/*.{ts,tsx,js,jsx,json}'",
     "format:eslint": "eslint ./ --fix --ext .js,.jsx,.ts,.tsx",
@@ -58,9 +58,7 @@
     "throttle-debounce": "5.0.0",
     "typeorm": "0.3.11",
     "zipcode-ja": "0.0.7",
-    "zod": "3.20.6"
-  },
-  "devDependencies": {
+    "zod": "3.20.6",
     "@babel/core": "7.20.5",
     "@types/bcrypt": "5.0.0",
     "@types/currency-formatter": "1.5.1",
@@ -105,9 +103,9 @@
     "vite-plugin-top-level-await": "1.2.4",
     "vite-plugin-wasm": "3.2.1"
   },
-  "packageManager": "pnpm@7.24.3",
+  "packageManager": "pnpm@9.15.3",
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=7.24.3"
+    "node": ">=22.11.0",
+    "pnpm": ">=9.15.3"
   }
 }

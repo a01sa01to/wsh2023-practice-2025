@@ -7,7 +7,6 @@ import { Icon } from '../../../foundation/Icon';
 import { Image } from '../../../foundation/Image';
 
 import * as styles from './MediaItem.styles';
-import { loadThumbnail } from './loadThumbnail';
 
 type Props = {
   file: MediaFileFragmentResponse;
@@ -21,7 +20,8 @@ export const MediaItem: FC<Props> = ({ file }) => {
     if (mediaType === 'image') {
       return setImageSrc(file.filename);
     }
-    loadThumbnail(file.filename).then((url) => setImageSrc(url));
+    return setImageSrc(file.filename.replace(".mp4", "-thumbnail.png"));
+    // loadThumbnail(file.filename).then((url) => setImageSrc(url));
   }, [file.filename, mediaType]);
 
   if (imageSrc === undefined) {
@@ -30,7 +30,7 @@ export const MediaItem: FC<Props> = ({ file }) => {
 
   return (
     <div className={styles.container()}>
-      <Image fill src={imageSrc} />
+      <Image fill src={imageSrc.replace(".jpg", "-thumbnail.jpg")} />
       {mediaType === 'video' && (
         <div className={styles.playIcon()}>
           <Icon color="#ffffff" height={16} type="FaPlay" width={16} />

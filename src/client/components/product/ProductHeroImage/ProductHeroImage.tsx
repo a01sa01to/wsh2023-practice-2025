@@ -6,10 +6,10 @@ import type { ProductFragmentResponse } from '../../../graphql/fragments';
 import { Anchor } from '../../foundation/Anchor';
 import { AspectRatio } from '../../foundation/AspectRatio';
 import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType';
+import { Image } from '../../foundation/Image';
 import { WidthRestriction } from '../../foundation/WidthRestriction';
 
 import * as styles from './ProductHeroImage.styles';
-import { Image } from '../../foundation/Image';
 
 type Props = {
   product: ProductFragmentResponse;
@@ -28,7 +28,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
               <div className={styles.container()}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
                   {
-                    thumbnailFile && <Image className={styles.image()} src={thumbnailFile.filename} />
+                    thumbnailFile && <Image className={styles.image()} loading='eager' src={thumbnailFile.filename} />
                   }
                 </AspectRatio>
 

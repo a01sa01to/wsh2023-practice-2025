@@ -31,7 +31,9 @@ async function init(): Promise<void> {
   app.use(session({}, app));
 
   app.use(async (ctx, next) => {
-    ctx.set('Cache-Control', 'no-store');
+    if (["/fonts", '/images', '/icons', '/videos', '/robots.txt'].some((path) => ctx.path.startsWith(path))) {
+      ctx.set('Cache-Control', 'public, max-age=86400, immutable');
+    }
     await next();
   });
 

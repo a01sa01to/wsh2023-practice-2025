@@ -7,13 +7,14 @@ type Props = Omit<ComponentProps<'img'>, 'className'> & {
   fill?: boolean;
 };
 
-export const Image: FC<Props> = ({ fill, ...rest }) => {
+export const Image: FC<Props> = ({ decoding, fill, loading, ...rest }) => {
   return (
     <img
       className={classNames(styles.container(), {
         [styles.container__fill()]: fill === true,
       })}
-      loading="eager"
+      decoding={decoding ?? "async"}
+      loading={loading ?? "lazy"}
       {...rest}
     />
   );

@@ -9,6 +9,7 @@ import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType';
 import { WidthRestriction } from '../../foundation/WidthRestriction';
 
 import * as styles from './ProductHeroImage.styles';
+import { Image } from '../../foundation/Image';
 
 type Props = {
   product: ProductFragmentResponse;
@@ -27,7 +28,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
               <div className={styles.container()}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
                   {
-                    thumbnailFile && <img className={styles.image()} src={thumbnailFile.filename} />
+                    thumbnailFile && <Image className={styles.image()} src={thumbnailFile.filename} />
                   }
                 </AspectRatio>
 

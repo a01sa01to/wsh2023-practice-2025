@@ -56,9 +56,6 @@ importers:
       '@types/koa-static':
         specifier: 4.0.2
         version: 4.0.2
-      '@types/lodash':
-        specifier: 4.14.191
-        version: 4.14.191
       '@types/node':
         specifier: 18.11.15
         version: 18.11.15
@@ -152,9 +149,6 @@ importers:
       koa-static:
         specifier: 5.0.0
         version: 5.0.0
-      lodash:
-        specifier: 4.17.21
-        version: 4.17.21
       modern-css-reset:
         specifier: 1.4.0
         version: 1.4.0
@@ -1008,9 +1002,6 @@ packages:
 
   '@types/koa@2.13.5':
     resolution: {integrity: sha512-HSUOdzKz3by4fnqagwthW/1w/yJspTgppyyalPVbgZf8jQWvdIXcVW5h2DGtw4zYntOaeRGx49r1hxoPWrD4aA==}
-
-  '@types/lodash@4.14.191':
-    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
 
   '@types/long@4.0.2':
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==}
@@ -5088,8 +5079,6 @@ snapshots:
       '@types/keygrip': 1.0.6
       '@types/koa-compose': 3.2.8
       '@types/node': 18.11.15
-
-  '@types/lodash@4.14.191': {}
 
   '@types/long@4.0.2': {}
 

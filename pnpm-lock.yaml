@@ -83,9 +83,6 @@ importers:
       bcrypt:
         specifier: 5.1.0
         version: 5.1.0(encoding@0.1.13)
-      canvaskit-wasm:
-        specifier: 0.38.0
-        version: 0.38.0
       classnames:
         specifier: 2.3.2
         version: 2.3.2
@@ -1416,9 +1413,6 @@ packages:
 
   caniuse-lite@1.0.30001699:
     resolution: {integrity: sha512-b+uH5BakXZ9Do9iK+CkDmctUSEqZl+SP056vc5usa0PL+ev5OHw003rZXcnjNDv3L8P5j6rwT6C0BPKSikW08w==}
-
-  canvaskit-wasm@0.38.0:
-    resolution: {integrity: sha512-ZEG6lucpbQ4Ld+mY8C1Ng+PMLVP+/AX02jS0Sdl28NyMxuKSa9uKB8oGd1BYp1XWPyO2Jgr7U8pdyjJ/F3xR5Q==}
 
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -5599,8 +5593,6 @@ snapshots:
   camelize@1.0.1: {}
 
   caniuse-lite@1.0.30001699: {}
-
-  canvaskit-wasm@0.38.0: {}
 
   chalk@2.4.2:
     dependencies:

@@ -28,7 +28,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
               <div className={styles.container()}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
                   {
-                    thumbnailFile && <Image className={styles.image()} loading='eager' src={thumbnailFile.filename} />
+                    thumbnailFile && <Image className={styles.image()} decoding='sync' loading='eager' src={thumbnailFile.filename} />
                   }
                 </AspectRatio>
 

@@ -254,9 +254,6 @@ importers:
       vite-plugin-ejs:
         specifier: 1.6.4
         version: 1.6.4
-      vite-plugin-top-level-await:
-        specifier: 1.2.4
-        version: 1.2.4(vite@4.1.4(@types/node@18.11.15))
       vite-plugin-wasm:
         specifier: 3.2.1
         version: 3.2.1(@types/node@18.11.15)
@@ -4124,11 +4121,6 @@ packages:
   vite-plugin-ejs@1.6.4:
     resolution: {integrity: sha512-23p1RS4PiA0veXY5/gHZ60pl3pPvd8NEqdBsDgxNK8nM1rjFFDcVb0paNmuipzCgNP/Y0f/Id22M7Il4kvZ2jA==}
 
-  vite-plugin-top-level-await@1.2.4:
-    resolution: {integrity: sha512-ABHJipy/R31F/3bWnPBYIFUKVXr+Ox6EVax5jos67QhuzZ4aQyp/F3qZhF2Qi/9pgi9vpIftTZ++wfkRn0c4gA==}
-    peerDependencies:
-      vite: '>=2.8'
-
   vite-plugin-wasm@3.2.1:
     resolution: {integrity: sha512-38TPuRUHC+s62JFhZxWtNStujhsav/qFEspDa/+huGCUvn0SbXdXexnxQ+UgIs2pmBnd/xd70fm1R9jW/0qALA==}
 
@@ -4978,12 +4970,15 @@ snapshots:
       '@swc/core-win32-arm64-msvc': 1.10.15
       '@swc/core-win32-ia32-msvc': 1.10.15
       '@swc/core-win32-x64-msvc': 1.10.15
+    optional: true
 
-  '@swc/counter@0.1.3': {}
+  '@swc/counter@0.1.3':
+    optional: true
 
   '@swc/types@0.1.17':
     dependencies:
       '@swc/counter': 0.1.3
+    optional: true
 
   '@tootallnate/once@1.1.2':
     optional: true
@@ -8557,14 +8552,6 @@ snapshots:
   vite-plugin-ejs@1.6.4:
     dependencies:
       ejs: 3.1.10
-
-  vite-plugin-top-level-await@1.2.4(vite@4.1.4(@types/node@18.11.15)):
-    dependencies:
-      '@swc/core': 1.10.15
-      uuid: 9.0.1
-      vite: 4.1.4(@types/node@18.11.15)
-    transitivePeerDependencies:
-      - '@swc/helpers'
 
   vite-plugin-wasm@3.2.1(@types/node@18.11.15):
     dependencies:

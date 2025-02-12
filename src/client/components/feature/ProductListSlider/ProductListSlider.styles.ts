@@ -28,6 +28,7 @@ export const list = ({ slideIndex, visibleItemCount }: { slideIndex: number; vis
   transition-property: transform;
   transition-timing-function: ease-out;
   width: 100%;
+  height: 206px;
 `;
 
 export const item = () => css`

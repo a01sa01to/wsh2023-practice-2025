@@ -9,14 +9,14 @@ import * as styles from './ProductListSlider.styles';
 import { useSlider } from './hooks/useSlider';
 
 type Props = {
-  featureSection: FeatureSectionFragmentResponse;
+  featureSection?: FeatureSectionFragmentResponse;
 };
 
 export const ProductListSlider: FC<Props> = ({ featureSection }) => {
-  const products = featureSection.items.map((item) => item.product);
+  const products = featureSection?.items.map((item) => item.product);
 
   const { containerElementRef, setSlideIndex, slideIndex, visibleItemCount } = useSlider({
-    items: products,
+    items: products ?? [],
   });
 
   return (
@@ -30,7 +30,7 @@ export const ProductListSlider: FC<Props> = ({ featureSection }) => {
       </div>
       <div className={styles.listWrapper()}>
         <ul ref={containerElementRef} className={styles.list({ slideIndex, visibleItemCount })}>
-          {products.map((product, index) => {
+          {(products ?? []).map((product, index) => {
             const hidden = index < slideIndex || slideIndex + visibleItemCount <= index;
             return (
               <li
@@ -48,7 +48,7 @@ export const ProductListSlider: FC<Props> = ({ featureSection }) => {
       <div className={styles.slideButton()}>
         <ProductListSlideButton
           arrowType={ArrowType.RIGHT}
-          disabled={slideIndex + visibleItemCount >= products.length}
+          disabled={slideIndex + visibleItemCount >= (products ?? []).length}
           onClick={() => setSlideIndex(slideIndex + visibleItemCount)}
         />
       </div>

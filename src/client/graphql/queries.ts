@@ -68,14 +68,26 @@ export type GetRecommendationsQueryResponse = {
 };
 
 export const GetFeatureSectionsQuery = gql`
-  ${FeatureSectionFragment}
-
   query GetFeatureSections {
     features {
-      ...FeatureSectionFragment
+      id
+      title
     }
   }
 `;
 export type GetFeatureSectionsQueryResponse = {
-  features: FeatureSectionFragmentResponse[];
+  features: Pick<FeatureSectionFragmentResponse, 'id' | 'title'>[];
+};
+
+export const GetFeatureSectionQuery = gql`
+  ${FeatureSectionFragment}
+
+  query GetFeatureSection($id: Int!) {
+    feature(id: $id) {
+      ...FeatureSectionFragment
+    }
+  }
+`;
+export type GetFeatureSectionQueryResponse = {
+  feature: FeatureSectionFragmentResponse;
 };

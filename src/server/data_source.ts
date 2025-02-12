@@ -35,6 +35,5 @@ export const dataSource = new DataSource({
   logging: false,
   migrations: [],
   subscribers: [],
-  synchronize: true,
   type: 'sqlite',
 });

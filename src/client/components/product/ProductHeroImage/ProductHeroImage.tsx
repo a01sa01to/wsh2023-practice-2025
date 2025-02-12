@@ -12,19 +12,19 @@ import { WidthRestriction } from '../../foundation/WidthRestriction';
 import * as styles from './ProductHeroImage.styles';
 
 type Props = {
-  product: Pick<ProductFragmentResponse, "id" | "name" | "media">;
+  product?: Pick<ProductFragmentResponse, "id" | "name" | "media">;
   title: string;
 };
 
 export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
-  const thumbnailFile = product.media.find((productMedia) => productMedia.isThumbnail)?.file;
+  const thumbnailFile = product?.media.find((productMedia) => productMedia.isThumbnail)?.file;
 
   return (
     <GetDeviceType>
       {({ deviceType }) => {
         return (
           <WidthRestriction>
-            <Anchor href={`/product/${product.id}`}>
+            <Anchor href={product ? `/product/${product.id}` : "#"}>
               <div className={styles.container()}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
                   {
@@ -47,7 +47,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
                       [styles.description__mobile()]: deviceType === DeviceType.MOBILE,
                     })}
                   >
-                    {product.name}
+                    {product ? product.name : ""}
                   </p>
                 </div>
               </div>

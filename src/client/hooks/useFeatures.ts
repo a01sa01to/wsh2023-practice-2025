@@ -1,4 +1,4 @@
-import { useSuspenseQuery_experimental as useSuspenseQuery } from '@apollo/client';
+import { useSuspenseQuery } from '@apollo/client';
 
 import type { GetFeatureSectionsQueryResponse } from '../graphql/queries';
 import { GetFeatureSectionsQuery } from '../graphql/queries';

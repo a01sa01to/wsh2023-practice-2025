@@ -1,4 +1,4 @@
-import { useSuspenseQuery_experimental as useSuspenseQuery } from '@apollo/client';
+import { useSuspenseQuery } from '@apollo/client';
 
 import type { GetRecommendationsQueryResponse } from '../graphql/queries';
 import { GetRecommendationsQuery } from '../graphql/queries';

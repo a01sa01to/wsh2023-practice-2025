@@ -17,7 +17,7 @@
     "clear:database": "rm -f ./databases/database.sqlite"
   },
   "dependencies": {
-    "@apollo/client": "3.8.0-alpha.7",
+    "@apollo/client": "3.12.11",
     "@apollo/server": "4.3.0",
     "@as-integrations/koa": "0.2.1",
     "@babel/core": "7.20.5",

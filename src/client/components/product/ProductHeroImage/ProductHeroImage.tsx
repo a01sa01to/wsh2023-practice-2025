@@ -12,7 +12,7 @@ import { WidthRestriction } from '../../foundation/WidthRestriction';
 import * as styles from './ProductHeroImage.styles';
 
 type Props = {
-  product: ProductFragmentResponse;
+  product: Pick<ProductFragmentResponse, "id" | "name" | "media">;
   title: string;
 };
 

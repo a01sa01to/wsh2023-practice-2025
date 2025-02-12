@@ -143,17 +143,21 @@ export type ProductWithReviewFragmentResponse = ProductFragmentResponse & {
 };
 
 export const RecommendationFragment = gql`
-  ${ProductFragment}
-
   fragment RecommendationFragment on Recommendation {
-    id
     product {
-      ...ProductFragment
+      id
+      name
+      media {
+        isThumbnail
+        file {
+          filename
+        }
+      }
     }
   }
 `;
-export type RecommendationFragmentResponse = Pick<Recommendation, 'id'> & {
-  product: ProductFragmentResponse;
+export type RecommendationFragmentResponse = {
+  product: Pick<ProductFragmentResponse, "id" | "name" | "media">;
 };
 
 export const ShoppingCartItemFragment = gql`

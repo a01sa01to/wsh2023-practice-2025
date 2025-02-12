@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-import type { FeatureItem } from '../../model/feature_item';
 import type { FeatureSection } from '../../model/feature_section';
 import type { LimitedTimeOffer } from '../../model/limited_time_offer';
 import type { MediaFile } from '../../model/media_file';
@@ -8,7 +7,6 @@ import type { Order } from '../../model/order';
 import type { Product } from '../../model/product';
 import type { ProductMedia } from '../../model/product_media';
 import type { Profile } from '../../model/profile';
-import type { Recommendation } from '../../model/recommendation';
 import type { Review } from '../../model/review';
 import type { ShoppingCartItem } from '../../model/shopping_cart_item';
 import type { User } from '../../model/user';
@@ -213,17 +211,27 @@ export type AuthUserFragmentResponse = UserFragmentResponse & {
 };
 
 export const FeatureItemFragment = gql`
-  ${ProductFragment}
+  ${LimitedTimeOfferFragment}
 
   fragment FeatureItemFragment on FeatureItem {
-    id
     product {
-      ...ProductFragment
+      id
+      name
+      price
+      media {
+        isThumbnail
+        file {
+          filename
+        }
+      }
+      offers {
+        ...LimitedTimeOfferFragment
+      }
     }
   }
 `;
-export type FeatureItemFragmentResponse = Pick<FeatureItem, 'id'> & {
-  product: ProductFragmentResponse;
+export type FeatureItemFragmentResponse = {
+  product: Pick<ProductFragmentResponse, "id" | "name" | "price" | "media" | "offers">
 };
 
 export const FeatureSectionFragment = gql`

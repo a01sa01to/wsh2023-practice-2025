@@ -11,13 +11,13 @@ import { ProductOfferLabel } from '../../product/ProductOfferLabel';
 import * as styles from './ProductCard.styles';
 
 type Props = {
-  product: ProductFragmentResponse;
+  product: Pick<ProductFragmentResponse, "id" | "name" | "media" | "price" | "offers">;
 };
 
 export const ProductCard: FC<Props> = ({ product }) => {
   const thumbnailFile = product.media.find((productMedia) => productMedia.isThumbnail)?.file;
 
-  const { activeOffer } = useActiveOffer(product);
+  const { activeOffer } = useActiveOffer(product.offers);
   const price = activeOffer?.price ?? product.price;
 
   return (

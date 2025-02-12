@@ -22,7 +22,7 @@ type Props = {
 
 export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
   const thumbnailFile = item.product.media.find((productMedia) => productMedia.isThumbnail)?.file;
-  const { activeOffer } = useActiveOffer(item.product);
+  const { activeOffer } = useActiveOffer(item.product.offers);
   const price = activeOffer?.price ?? item.product.price;
 
   const updateCount: ChangeEventHandler<HTMLInputElement> = (ev) => {

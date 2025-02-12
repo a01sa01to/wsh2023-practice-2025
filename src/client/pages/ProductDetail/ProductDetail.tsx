@@ -30,7 +30,7 @@ export const ProductDetail: FC = () => {
   const { updateCartItem } = useUpdateCartItem();
   const handleOpenModal = useOpenModal();
   const { amountInCart } = useAmountInCart(Number(productId));
-  const { activeOffer } = useActiveOffer(product);
+  const { activeOffer } = useActiveOffer(product?.offers ?? []);
 
   const handleSubmitReview = ({ comment }: { comment: string }) => {
     sendReview({

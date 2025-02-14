@@ -24,16 +24,13 @@
 .noticeDescription {
   font-family: 'Noto Serif JP', sans-serif;
   text-align: center;
-}
-
-.noticeDescription__desktop {
-  font-size: 1.125rem;
-}
-
-.noticeDescription__mobile {
   font-size: 1rem;
 }
-
+@media (min-width: 1024px) {
+  .noticeDescription {
+    font-size: 1.125rem;
+  }
+}
 .recommended {
   display: flex;
   flex-direction: column;

@@ -34,25 +34,21 @@
   color: #ffffff;
   font-weight: 700;
   letter-spacing: 1px;
-}
-
-.title__desktop {
-  font-size: 1.5rem;
-}
-
-.title__mobile {
   font-size: 1.125rem;
+}
+@media (min-width: 1024px) {
+  .title {
+    font-size: 1.5rem;
+  }
 }
 
 .description {
   color: #ffffff;
   margin-top: 8px;
-}
-
-.description__desktop {
-  font-size: 1rem;
-}
-
-.description__mobile {
   font-size: 0.875rem;
+}
+@media (min-width: 1024px) {
+  .description {
+    font-size: 1rem;
+  }
 }

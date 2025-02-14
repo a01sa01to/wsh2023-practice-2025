@@ -12,12 +12,10 @@
   gap: 16px;
 }
 
-.itemList__desktop {
-  flex-direction: row;
-}
-
-.itemList__mobile {
-  flex-direction: column;
+@media (min-width: 1024px) {
+  .itemList {
+    flex-direction: row;
+  }
 }
 
 .item {

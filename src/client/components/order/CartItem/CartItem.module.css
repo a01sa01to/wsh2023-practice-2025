@@ -1,15 +1,13 @@
 .container {
   display: flex;
-}
-
-.container__mobile {
   flex-direction: column;
   gap: 4px;
 }
-
-.container__desktop {
-  flex-direction: row;
-  gap: 8px;
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+    gap: 8px;
+  }
 }
 
 .item {
@@ -35,14 +33,12 @@
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-}
-
-.thumbnail__mobile {
   width: 50%;
 }
-
-.thumbnail__desktop {
-  width: 256px;
+@media (min-width: 1024px) {
+  .thumbnail {
+    width: 256px;
+  }
 }
 
 .offerLabel {

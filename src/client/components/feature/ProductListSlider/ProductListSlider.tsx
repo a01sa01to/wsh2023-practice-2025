@@ -34,7 +34,7 @@ export const ProductListSlider: FC<Props> = ({ featureSection }) => {
           className={styles.list}
           style={{
             gridAutoColumns: `calc(100% / ${visibleItemCount})`,
-            transform: `translateX(calc(${slideIndex} / ${visibleItemCount} * -100 %))`,
+            transform: `translateX(calc(${slideIndex} / ${visibleItemCount} * -100%))`,
           }}
         >
           {(products ?? []).map((product, index) => {

@@ -29,16 +29,12 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
   };
 
   return (
-    <div
-      className={styles.container}
-    >
+    <div className={styles.container}>
       <div className={styles.item}>
         <Anchor href={`/product/${item.product.id}`}>
           <div className={styles.itemInner}>
             {thumbnailFile ? (
-              <div
-                className={styles.thumbnail}
-              >
+              <div className={styles.thumbnail}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
                   <Image fill src={thumbnailFile.filename} />
                 </AspectRatio>
@@ -56,9 +52,7 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
           </div>
         </Anchor>
       </div>
-      <div
-        className={styles.container}
-      >
+      <div className={styles.container}>
         <label className={styles.counter}>
           個数:
           <input

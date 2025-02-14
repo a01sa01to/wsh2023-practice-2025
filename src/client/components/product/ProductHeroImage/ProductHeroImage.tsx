@@ -28,16 +28,8 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
           </AspectRatio>
 
           <div className={styles.overlay}>
-            <p
-              className={styles.title}
-            >
-              {title}
-            </p>
-            <p
-              className={styles.description}
-            >
-              {product ? product.name : ''}
-            </p>
+            <p className={styles.title}>{title}</p>
+            <p className={styles.description}>{product ? product.name : ''}</p>
           </div>
         </div>
       </Anchor>

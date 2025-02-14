@@ -9,9 +9,7 @@ type Props = {
 export const WidthRestriction: FC<Props> = ({ children }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.inner}>
-        {children}
-      </div>
+      <div className={styles.inner}>{children}</div>
     </div>
   );
 };

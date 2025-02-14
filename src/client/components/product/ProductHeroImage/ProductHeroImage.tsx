@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import { memo } from 'react';
 import type { FC } from 'react';
 
@@ -9,7 +9,7 @@ import { DeviceType, GetDeviceType } from '../../foundation/GetDeviceType';
 import { Image } from '../../foundation/Image';
 import { WidthRestriction } from '../../foundation/WidthRestriction';
 
-import * as styles from './ProductHeroImage.styles';
+import styles from './ProductHeroImage.module.css';
 
 type Props = {
   product?: Pick<ProductFragmentResponse, "id" | "name" | "media">;
@@ -25,27 +25,21 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
         return (
           <WidthRestriction>
             <Anchor href={product ? `/product/${product.id}` : "#"}>
-              <div className={styles.container()}>
+              <div className={styles.container}>
                 <AspectRatio ratioHeight={9} ratioWidth={16}>
                   {
-                    thumbnailFile && <Image className={styles.image()} decoding='sync' loading='eager' src={thumbnailFile.filename} />
+                    thumbnailFile && <Image className={styles.image} decoding='sync' loading='eager' src={thumbnailFile.filename} />
                   }
                 </AspectRatio>
 
-                <div className={styles.overlay()}>
+                <div className={styles.overlay}>
                   <p
-                    className={classNames(styles.title(), {
-                      [styles.title__desktop()]: deviceType === DeviceType.DESKTOP,
-                      [styles.title__mobile()]: deviceType === DeviceType.MOBILE,
-                    })}
+                    className={clsx(styles.title, deviceType === DeviceType.DESKTOP && styles.title__desktop, deviceType === DeviceType.MOBILE && styles.title__mobile)}
                   >
                     {title}
                   </p>
                   <p
-                    className={classNames(styles.description(), {
-                      [styles.description__desktop()]: deviceType === DeviceType.DESKTOP,
-                      [styles.description__mobile()]: deviceType === DeviceType.MOBILE,
-                    })}
+                    className={clsx(styles.description, deviceType === DeviceType.DESKTOP && styles.description__desktop, deviceType === DeviceType.MOBILE && styles.description__mobile)}
                   >
                     {product ? product.name : ""}
                   </p>

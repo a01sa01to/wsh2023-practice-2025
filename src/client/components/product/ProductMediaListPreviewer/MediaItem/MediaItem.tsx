@@ -6,7 +6,7 @@ import { getMediaType } from '../../../../utils/get_media_type';
 import { Icon } from '../../../foundation/Icon';
 import { Image } from '../../../foundation/Image';
 
-import * as styles from './MediaItem.styles';
+import styles from './MediaItem.module.css';
 
 type Props = {
   file: MediaFileFragmentResponse;
@@ -29,10 +29,10 @@ export const MediaItem: FC<Props> = ({ file }) => {
   }
 
   return (
-    <div className={styles.container()}>
+    <div className={styles.container}>
       <Image fill src={imageSrc.replace(".jpg", "-thumbnail.jpg")} />
       {mediaType === 'video' && (
-        <div className={styles.playIcon()}>
+        <div className={styles.playIcon}>
           <Icon color="#ffffff" height={16} type="FaPlay" width={16} />
         </div>
       )}

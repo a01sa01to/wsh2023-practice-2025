@@ -7,7 +7,7 @@ import { ProductHeroImage } from '../../components/product/ProductHeroImage';
 import { useFeatures } from '../../hooks/useFeatures';
 import { useRecommendation } from '../../hooks/useRecommendation';
 
-import * as styles from './Top.styles';
+import styles from './Top.module.css';
 
 export const Top: FC = () => {
   const { recommendation } = useRecommendation();
@@ -22,11 +22,11 @@ export const Top: FC = () => {
         <div>
           <ProductHeroImage product={recommendation?.product} title="今週のオススメ" />
 
-          <div className={styles.featureList()}>
+          <div className={styles.featureList}>
             {(features ?? []).map((featureSection) => {
               return (
-                <div key={featureSection.id} className={styles.feature()}>
-                  <h2 className={styles.featureHeading()}>{featureSection.title}</h2>
+                <div key={featureSection.id} className={styles.feature}>
+                  <h2 className={styles.featureHeading}>{featureSection.title}</h2>
                   <ProductList featureSection={featureSection} />
                 </div>
               );

@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Noto Serif JP';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url('/fonts/NotoSerifJP-Bold-subset.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Noto Serif JP';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/fonts/NotoSerifJP-Regular-subset.woff2') format('woff2');
+}
+
+.container {
+  display: grid;
+  height: 50vh;
+  place-items: center;
+}
+
+.inner {
+  display: grid;
+  gap: 16px;
+  place-items: center;
+}
+
+.mainParagraph {
+  color: #222222;
+  font-family: 'Noto Serif JP', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subParagraph {
+  color: #222222;
+  font-family: 'Noto Serif JP', sans-serif;
+  font-size: 0.875rem;
+}

@@ -1,7 +1,7 @@
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import type { FC, ReactNode } from 'react';
 
-import * as styles from './ProductOfferLabel.styles';
+import styles from './ProductOfferLabel.module.css';
 
 type Size = 'base' | 'lg';
 type Props = {
@@ -11,10 +11,7 @@ type Props = {
 
 export const ProductOfferLabel: FC<Props> = ({ children, size }) => (
   <span
-    className={classNames(styles.container(), {
-      [styles.container__base()]: size === 'base',
-      [styles.container__lg()]: size === 'lg',
-    })}
+    className={clsx(styles.container, size === 'base' && styles.container__base, size === 'lg' && styles.container__lg)}
   >
     {children}
   </span>

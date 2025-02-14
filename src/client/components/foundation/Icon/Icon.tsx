@@ -1,8 +1,5 @@
-import classNames from 'classnames';
 import type { FC } from 'react';
 import { FaArrowLeft, FaArrowRight, FaCheckCircle, FaPlay, FaShoppingCart, FaUser } from 'react-icons/fa';
-
-import * as styles from './Icon.styles';
 
 const Icons = {
   FaArrowLeft,
@@ -23,7 +20,7 @@ type Props = {
 export const Icon: FC<Props> = ({ color, height, type, width }) => {
   const Icon = Icons[type];
   return (
-    <span className={classNames(type, styles.container({ color, height, width }))}>
+    <span className={type} style={{ color, height, width }}>
       <Icon />
     </span>
   );

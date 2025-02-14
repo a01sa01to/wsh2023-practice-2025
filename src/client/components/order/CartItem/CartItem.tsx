@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import * as currencyFormatter from 'currency-formatter';
 import type { ChangeEventHandler, FC } from 'react';
 
@@ -12,7 +12,7 @@ import { Image } from '../../foundation/Image';
 import { OutlineButton } from '../../foundation/OutlineButton';
 import { ProductOfferLabel } from '../../product/ProductOfferLabel';
 
-import * as styles from './CartItem.styles';
+import styles from './CartItem.module.css';
 
 type Props = {
   item: ShoppingCartItemFragmentResponse;
@@ -35,34 +35,28 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
       {({ deviceType }) => {
         return (
           <div
-            className={classNames(styles.container(), {
-              [styles.container__desktop()]: deviceType === DeviceType.DESKTOP,
-              [styles.container__mobile()]: deviceType === DeviceType.MOBILE,
-            })}
+            className={clsx(styles.container, deviceType === DeviceType.DESKTOP && styles.container__desktop, deviceType === DeviceType.MOBILE && styles.container__mobile)}
           >
-            <div className={styles.item()}>
+            <div className={styles.item}>
               <Anchor href={`/product/${item.product.id}`}>
-                <div className={styles.itemInner()}>
+                <div className={styles.itemInner}>
                   {thumbnailFile ? (
                     <div
-                      className={classNames(styles.thumbnail(), {
-                        [styles.thumbnail__desktop()]: deviceType === DeviceType.DESKTOP,
-                        [styles.thumbnail__mobile()]: deviceType === DeviceType.MOBILE,
-                      })}
+                      className={clsx(styles.thumbnail, deviceType === DeviceType.DESKTOP && styles.thumbnail__desktop, deviceType === DeviceType.MOBILE && styles.thumbnail__mobile)}
                     >
                       <AspectRatio ratioHeight={9} ratioWidth={16}>
                         <Image fill src={thumbnailFile.filename} />
                       </AspectRatio>
                       {activeOffer !== undefined && (
-                        <div className={styles.offerLabel()}>
+                        <div className={styles.offerLabel}>
                           <ProductOfferLabel size="base">タイムセール中</ProductOfferLabel>
                         </div>
                       )}
                     </div>
                   ) : null}
-                  <div className={styles.details()}>
-                    <p className={styles.itemName()}>{item.product.name}</p>
-                    <p className={styles.itemPrice()}>
+                  <div className={styles.details}>
+                    <p className={styles.itemName}>{item.product.name}</p>
+                    <p className={styles.itemPrice}>
                       {currencyFormatter.format(price, { code: 'JPY', precision: 0 })}
                     </p>
                   </div>
@@ -70,15 +64,12 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
               </Anchor>
             </div>
             <div
-              className={classNames(styles.container(), {
-                [styles.controller__desktop()]: deviceType === DeviceType.DESKTOP,
-                [styles.controller__mobile()]: deviceType === DeviceType.MOBILE,
-              })}
+              className={clsx(styles.container, deviceType === DeviceType.DESKTOP && styles.container__desktop, deviceType === DeviceType.MOBILE && styles.container__mobile)}
             >
-              <label className={styles.counter()}>
+              <label className={styles.counter}>
                 個数:
                 <input
-                  className={styles.counterInput()}
+                  className={styles.counterInput}
                   defaultValue={item.amount}
                   max={999}
                   min={1}

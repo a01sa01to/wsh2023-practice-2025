@@ -1,9 +1,9 @@
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import type { FC } from 'react';
 
 import { Icon } from '../../foundation/Icon';
 
-import * as styles from './ProductListSlideButton.styles';
+import styles from './ProductListSlideButton.module.css';
 
 export const ArrowType = {
   LEFT: 'LEFT',
@@ -20,9 +20,7 @@ type Props = {
 export const ProductListSlideButton: FC<Props> = ({ arrowType, disabled, onClick }) => {
   return (
     <button
-      className={classNames(styles.container(), {
-        [styles.container__disabled()]: disabled,
-      })}
+      className={clsx(styles.container, disabled && styles.container__disabled)}
       disabled={disabled}
       onClick={onClick}
     >

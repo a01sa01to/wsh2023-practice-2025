@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import type { FC } from 'react';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { ProductHeroImage } from '../../components/product/ProductHeroImage';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { useRecommendation } from '../../hooks/useRecommendation';
 
-import * as styles from './OrderComplete.styles';
+import styles from './OrderComplete.module.css';
 
 export const OrderComplete: FC = () => {
   const navigate = useNavigate();
@@ -50,16 +50,13 @@ export const OrderComplete: FC = () => {
         <GetDeviceType>
           {({ deviceType }) => (
             <WidthRestriction>
-              <div className={styles.container()}>
-                <div className={styles.notice()}>
-                  <h2 className={styles.noticeHeading()}>購入が完了しました</h2>
+              <div className={styles.container}>
+                <div className={styles.notice}>
+                  <h2 className={styles.noticeHeading}>購入が完了しました</h2>
                   <AspectRatio ratioHeight={1} ratioWidth={2}>
-                    <div className={styles.noticeDescriptionWrapper()}>
+                    <div className={styles.noticeDescriptionWrapper}>
                       <p
-                        className={classNames(styles.noticeDescription(), {
-                          [styles.noticeDescription__desktop()]: deviceType === DeviceType.DESKTOP,
-                          [styles.noticeDescription__mobile()]: deviceType === DeviceType.MOBILE,
-                        })}
+                        className={clsx(styles.noticeDescription, deviceType === DeviceType.DESKTOP && styles.noticeDescription__desktop, deviceType === DeviceType.MOBILE && styles.noticeDescription__mobile)}
                       >
                         このサイトは架空のサイトであり、商品が発送されることはありません
                       </p>
@@ -67,12 +64,12 @@ export const OrderComplete: FC = () => {
                   </AspectRatio>
                 </div>
 
-                <div className={styles.recommended()}>
-                  <h2 className={styles.recommendedHeading()}>こちらの商品もオススメです</h2>
+                <div className={styles.recommended}>
+                  <h2 className={styles.recommendedHeading}>こちらの商品もオススメです</h2>
                   <ProductHeroImage product={recommendation.product} title={recommendation.product.name} />
                 </div>
 
-                <div className={styles.backToTopButtonWrapper()}>
+                <div className={styles.backToTopButtonWrapper}>
                   <PrimaryAnchor href="/" size="lg">
                     トップへ戻る
                   </PrimaryAnchor>

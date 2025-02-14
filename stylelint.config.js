@@ -3,7 +3,7 @@ module.exports = {
   overrides: [
     {
       customSyntax: 'postcss-styled-syntax',
-      files: ['**/*.{js,ts,jsx,tsx}'],
+      files: ['**/*.{js,ts,jsx,tsx,css}'],
     },
   ],
   plugins: ['stylelint-order'],

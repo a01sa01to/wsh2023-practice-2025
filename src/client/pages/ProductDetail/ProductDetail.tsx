@@ -18,7 +18,7 @@ import { useUpdateCartItem } from '../../hooks/useUpdateCartItems';
 import { useOpenModal } from '../../store/modal';
 import { normalizeCartItemCount } from '../../utils/normalize_cart_item';
 
-import * as styles from './ProductDetail.styles';
+import styles from './ProductDetail.module.css';
 
 export const ProductDetail: FC = () => {
   const { productId } = useParams();
@@ -56,13 +56,13 @@ export const ProductDetail: FC = () => {
       )}
       <Layout>
         <WidthRestriction>
-          <div className={styles.container()}>
-            <section className={styles.details()}>
+          <div className={styles.container}>
+            <section className={styles.details}>
               <ProductMediaListPreviewer product={product} />
-              <div className={styles.overview()}>
+              <div className={styles.overview}>
                 <ProductOverview activeOffer={activeOffer} product={product} />
               </div>
-              <div className={styles.purchase()}>
+              <div className={styles.purchase}>
                 <ProductPurchaseSection
                   amountInCart={amountInCart}
                   isAuthUser={isAuthUser}
@@ -73,8 +73,8 @@ export const ProductDetail: FC = () => {
               </div>
             </section>
 
-            <section className={styles.reviews()}>
-              <h2 className={styles.reviewsHeading()}>レビュー</h2>
+            <section className={styles.reviews}>
+              <h2 className={styles.reviewsHeading}>レビュー</h2>
               <ReviewSection hasSignedIn={isAuthUser} onSubmitReview={handleSubmitReview} reviews={reviews} />
             </section>
           </div>

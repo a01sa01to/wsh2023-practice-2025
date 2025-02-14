@@ -1,7 +1,7 @@
-import classNames from 'classnames';
+import { clsx } from "clsx"
 import type { ComponentProps, FC } from 'react';
 
-import * as styles from './Image.styles';
+import styles from './Image.module.css';
 
 type Props = ComponentProps<'img'> & {
   fill?: boolean;
@@ -20,9 +20,7 @@ export const Image: FC<Props> = ({ className, decoding, fill, loading, src, ...r
 
   return (
     <img
-      className={classNames((className ?? ''), styles.container(), {
-        [styles.container__fill()]: fill === true,
-      })}
+      className={clsx(className, styles.container, fill && styles.container__fill)}
       decoding={decoding ?? "async"}
       loading={loading ?? "lazy"}
       src={`${filename}.webp`}

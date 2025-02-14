@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { clsx } from 'clsx';
 import type { FC } from 'react';
 
 import type { MediaFileFragmentResponse } from '../../../../graphql/fragments';
@@ -6,7 +6,7 @@ import { getMediaType } from '../../../../utils/get_media_type';
 import { DeviceType, GetDeviceType } from '../../../foundation/GetDeviceType';
 import { Image } from '../../../foundation/Image';
 
-import * as styles from './MediaItemPreiewer.styles';
+import styles from './MediaItemPreiewer.module.css';
 
 type Props = {
   file: MediaFileFragmentResponse;
@@ -16,7 +16,7 @@ export const MediaItemPreviewer: FC<Props> = ({ file }) => {
   const type = getMediaType(file.filename);
 
   return (
-    <div className={styles.container()}>
+    <div className={styles.container}>
       {type === 'image' && <Image fill src={file.filename} />}
       {type === 'video' && (
         <GetDeviceType>
@@ -26,10 +26,7 @@ export const MediaItemPreviewer: FC<Props> = ({ file }) => {
               controls
               muted
               playsInline
-              className={classNames(styles.video(), {
-                [styles.video__desktop()]: deviceType === DeviceType.DESKTOP,
-                [styles.video__mobile()]: deviceType === DeviceType.MOBILE,
-              })}
+              className={clsx(styles.video, deviceType === DeviceType.MOBILE && styles.video__mobile, deviceType === DeviceType.DESKTOP && styles.video__desktop)}
               src={file.filename}
             />
           )}

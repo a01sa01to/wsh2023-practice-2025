@@ -15,10 +15,10 @@ export const useFeature = (featureId: number) => {
   const featureResult = useQuery<GetFeatureSectionQueryResponse>(GetFeatureSectionQuery, {
     variables: {
       id: featureId,
-    }
-  })
+    },
+  });
 
   const feature = featureResult?.data?.feature;
 
   return { feature };
-}
+};

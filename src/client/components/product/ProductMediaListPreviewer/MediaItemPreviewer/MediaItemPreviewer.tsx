@@ -26,7 +26,11 @@ export const MediaItemPreviewer: FC<Props> = ({ file }) => {
               controls
               muted
               playsInline
-              className={clsx(styles.video, deviceType === DeviceType.MOBILE && styles.video__mobile, deviceType === DeviceType.DESKTOP && styles.video__desktop)}
+              className={clsx(
+                styles.video,
+                deviceType === DeviceType.MOBILE && styles.video__mobile,
+                deviceType === DeviceType.DESKTOP && styles.video__desktop,
+              )}
               src={file.filename}
             />
           )}

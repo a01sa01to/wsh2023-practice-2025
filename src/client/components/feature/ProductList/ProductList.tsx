@@ -8,7 +8,7 @@ import { ProductGridList } from '../ProductGridList';
 import { ProductListSlider } from '../ProductListSlider';
 
 type Props = {
-  featureSection: Pick<FeatureSectionFragmentResponse, "id" | "title">;
+  featureSection: Pick<FeatureSectionFragmentResponse, 'id' | 'title'>;
 };
 
 export const ProductList: FC<Props> = memo(({ featureSection }) => {

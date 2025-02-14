@@ -56,7 +56,11 @@ export const OrderComplete: FC = () => {
                   <AspectRatio ratioHeight={1} ratioWidth={2}>
                     <div className={styles.noticeDescriptionWrapper}>
                       <p
-                        className={clsx(styles.noticeDescription, deviceType === DeviceType.DESKTOP && styles.noticeDescription__desktop, deviceType === DeviceType.MOBILE && styles.noticeDescription__mobile)}
+                        className={clsx(
+                          styles.noticeDescription,
+                          deviceType === DeviceType.DESKTOP && styles.noticeDescription__desktop,
+                          deviceType === DeviceType.MOBILE && styles.noticeDescription__mobile,
+                        )}
                       >
                         このサイトは架空のサイトであり、商品が発送されることはありません
                       </p>

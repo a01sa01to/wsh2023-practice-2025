@@ -16,7 +16,11 @@ export const Footer: FC = () => {
         return (
           <footer className={styles.container}>
             <ul
-              className={clsx(styles.itemList, deviceType === DeviceType.DESKTOP && styles.itemList__desktop, deviceType === DeviceType.MOBILE && styles.itemList__mobile)}
+              className={clsx(
+                styles.itemList,
+                deviceType === DeviceType.DESKTOP && styles.itemList__desktop,
+                deviceType === DeviceType.MOBILE && styles.itemList__mobile,
+              )}
             >
               {FOOTER_LINK_ITEMS.map((item) => (
                 <li key={item} className={styles.item}>

@@ -20,7 +20,7 @@ export const MediaItem: FC<Props> = ({ file }) => {
     if (mediaType === 'image') {
       return setImageSrc(file.filename);
     }
-    return setImageSrc(file.filename.replace(".mp4", "-thumbnail.png"));
+    return setImageSrc(file.filename.replace('.mp4', '-thumbnail.png'));
     // loadThumbnail(file.filename).then((url) => setImageSrc(url));
   }, [file.filename, mediaType]);
 
@@ -30,7 +30,7 @@ export const MediaItem: FC<Props> = ({ file }) => {
 
   return (
     <div className={styles.container}>
-      <Image fill src={imageSrc.replace(".jpg", "-thumbnail.jpg")} />
+      <Image fill src={imageSrc.replace('.jpg', '-thumbnail.jpg')} />
       {mediaType === 'video' && (
         <div className={styles.playIcon}>
           <Icon color="#ffffff" height={16} type="FaPlay" width={16} />

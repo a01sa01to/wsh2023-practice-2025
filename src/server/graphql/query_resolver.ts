@@ -27,7 +27,7 @@ export const queryResolver: QueryResolver = {
             },
             offers: true,
           },
-        }
+        },
       },
       select: {
         id: true,
@@ -35,21 +35,21 @@ export const queryResolver: QueryResolver = {
           id: true,
           product: {
             id: true,
-            name: true,
-            price: true,
             media: {
-              isThumbnail: true,
               file: {
                 filename: true,
-              }
+              },
+              isThumbnail: true,
             },
+            name: true,
             offers: {
+              endDate: true,
               id: true,
               price: true,
               startDate: true,
-              endDate: true,
-            }
-          }
+            },
+            price: true,
+          },
         },
         title: true,
       },
@@ -59,9 +59,9 @@ export const queryResolver: QueryResolver = {
           product: {
             media: {
               isThumbnail: true,
-            }
-          }
-        }
+            },
+          },
+        },
       },
     });
   },
@@ -100,7 +100,7 @@ export const queryResolver: QueryResolver = {
             profile: {
               avatar: true,
             },
-          }
+          },
         },
       },
       where: { id: args.id },
@@ -119,22 +119,22 @@ export const queryResolver: QueryResolver = {
         id: true,
         product: {
           id: true,
-          name: true,
           media: {
-            isThumbnail: true,
             file: {
               filename: true,
-            }
-          }
-        }
+            },
+            isThumbnail: true,
+          },
+          name: true,
+        },
       },
       where: {
         product: {
           media: {
             isThumbnail: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   },
   user: (_parent, args) => {

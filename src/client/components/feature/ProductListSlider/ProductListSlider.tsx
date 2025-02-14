@@ -29,17 +29,18 @@ export const ProductListSlider: FC<Props> = ({ featureSection }) => {
         />
       </div>
       <div className={styles.listWrapper}>
-        <ul ref={containerElementRef} className={styles.list} style={{
-          gridAutoColumns: `calc(100% / ${visibleItemCount})`,
-          transform: `translateX(calc(${slideIndex} / ${visibleItemCount} * -100 %))`,
-        }}>
+        <ul
+          ref={containerElementRef}
+          className={styles.list}
+          style={{
+            gridAutoColumns: `calc(100% / ${visibleItemCount})`,
+            transform: `translateX(calc(${slideIndex} / ${visibleItemCount} * -100 %))`,
+          }}
+        >
           {(products ?? []).map((product, index) => {
             const hidden = index < slideIndex || slideIndex + visibleItemCount <= index;
             return (
-              <li
-                key={product.id}
-                className={clsx(styles.item, hidden && styles.item__hidden)}
-              >
+              <li key={product.id} className={clsx(styles.item, hidden && styles.item__hidden)}>
                 <ProductCard product={product} />
               </li>
             );

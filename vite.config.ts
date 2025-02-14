@@ -1,5 +1,5 @@
 import react from '@vitejs/plugin-react';
-import visualizer from "rollup-plugin-visualizer"
+import visualizer from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import wasm from 'vite-plugin-wasm';
@@ -7,7 +7,7 @@ import wasm from 'vite-plugin-wasm';
 export default defineConfig(async () => {
   return {
     build: {
-      target: "esnext"
+      target: 'esnext',
     },
     plugins: [
       visualizer(),

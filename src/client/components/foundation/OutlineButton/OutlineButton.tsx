@@ -11,7 +11,11 @@ type Props = Omit<ComponentProps<'button'>, 'className'> & {
 export const OutlineButton: FC<Props> = ({ children, size, ...rest }) => {
   return (
     <button
-      className={clsx(styles.container, size === 'base' && styles.container__base, size === 'lg' && styles.container__lg)}
+      className={clsx(
+        styles.container,
+        size === 'base' && styles.container__base,
+        size === 'lg' && styles.container__lg,
+      )}
       {...rest}
     >
       {children}

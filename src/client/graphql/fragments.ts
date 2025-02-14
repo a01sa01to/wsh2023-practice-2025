@@ -155,7 +155,7 @@ export const RecommendationFragment = gql`
   }
 `;
 export type RecommendationFragmentResponse = {
-  product: Pick<ProductFragmentResponse, "id" | "name" | "media">;
+  product: Pick<ProductFragmentResponse, 'id' | 'name' | 'media'>;
 };
 
 export const ShoppingCartItemFragment = gql`
@@ -231,7 +231,7 @@ export const FeatureItemFragment = gql`
   }
 `;
 export type FeatureItemFragmentResponse = {
-  product: Pick<ProductFragmentResponse, "id" | "name" | "price" | "media" | "offers">
+  product: Pick<ProductFragmentResponse, 'id' | 'name' | 'price' | 'media' | 'offers'>;
 };
 
 export const FeatureSectionFragment = gql`

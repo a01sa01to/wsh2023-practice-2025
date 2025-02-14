@@ -4,6 +4,6 @@ import type { GraphQLModelResolver } from './model_resolver';
 
 export const shoppingCartItemResolver: GraphQLModelResolver<ShoppingCartItem> = {
   product: (parent) => {
-    return parent.product
+    return parent.product;
   },
 };

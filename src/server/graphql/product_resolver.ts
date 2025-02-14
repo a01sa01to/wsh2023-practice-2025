@@ -7,9 +7,9 @@ export const productResolver: GraphQLModelResolver<Product> = {
     return parent.media;
   },
   offers: (parent) => {
-    return parent.offers
+    return parent.offers;
   },
   reviews: (parent) => {
-    return parent.reviews
+    return parent.reviews;
   },
 };

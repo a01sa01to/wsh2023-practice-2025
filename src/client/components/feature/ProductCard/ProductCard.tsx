@@ -11,7 +11,7 @@ import { ProductOfferLabel } from '../../product/ProductOfferLabel';
 import styles from './ProductCard.module.css';
 
 type Props = {
-  product: Pick<ProductFragmentResponse, "id" | "name" | "media" | "price" | "offers">;
+  product: Pick<ProductFragmentResponse, 'id' | 'name' | 'media' | 'price' | 'offers'>;
 };
 
 export const ProductCard: FC<Props> = ({ product }) => {
@@ -26,7 +26,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
         {thumbnailFile ? (
           <div className={styles.image}>
             <AspectRatio ratioHeight={9} ratioWidth={16}>
-              <Image height={126} src={thumbnailFile.filename.replace(".jpg", "-thumbnail.jpg")} width={224} />
+              <Image height={126} src={thumbnailFile.filename.replace('.jpg', '-thumbnail.jpg')} width={224} />
             </AspectRatio>
           </div>
         ) : null}

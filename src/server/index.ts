@@ -4,7 +4,7 @@ import { koaMiddleware } from '@as-integrations/koa';
 import gracefulShutdown from 'http-graceful-shutdown';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
-import compress from "koa-compress"
+import compress from 'koa-compress';
 import logger from 'koa-logger';
 import route from 'koa-route';
 import send from 'koa-send';
@@ -30,10 +30,10 @@ async function init(): Promise<void> {
   app.use(logger());
   app.use(bodyParser());
   app.use(session({}, app));
-  app.use(compress())
+  app.use(compress());
 
   app.use(async (ctx, next) => {
-    if (["/fonts", '/images', '/icons', '/videos', '/robots.txt'].some((path) => ctx.path.startsWith(path))) {
+    if (['/fonts', '/images', '/icons', '/videos', '/robots.txt'].some((path) => ctx.path.startsWith(path))) {
       ctx.set('Cache-Control', 'public, max-age=86400, immutable');
     }
     await next();

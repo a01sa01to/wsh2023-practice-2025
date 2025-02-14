@@ -4,6 +4,6 @@ import type { GraphQLModelResolver } from './model_resolver';
 
 export const productMediaResolver: GraphQLModelResolver<ProductMedia> = {
   file: async (parent) => {
-    return parent.file
+    return parent.file;
   },
 };

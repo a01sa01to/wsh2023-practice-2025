@@ -10,7 +10,7 @@
   margin: 4px;
   position: absolute;
   top: 0;
-  }
+}
 
 .image {
   border-radius: 8px;
@@ -19,9 +19,9 @@
 }
 
 .description {
-    display: grid;
-    padding: 4px;
-    }
+  display: grid;
+  padding: 4px;
+}
 
 .itemName {
   -webkit-box-orient: vertical;
@@ -35,6 +35,6 @@
 }
 
 .itemPrice {
-      color: #222222;
-      justify-self: right;
-      }
+  color: #222222;
+  justify-self: right;
+}

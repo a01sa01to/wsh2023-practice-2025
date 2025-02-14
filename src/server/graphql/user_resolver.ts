@@ -7,9 +7,9 @@ export const userResolver: GraphQLModelResolver<User> = {
     return parent.orders;
   },
   profile: (parent) => {
-    return parent.profile
+    return parent.profile;
   },
   reviews: (parent) => {
-    return parent.reviews
+    return parent.reviews;
   },
 };

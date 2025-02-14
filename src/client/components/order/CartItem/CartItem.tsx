@@ -35,14 +35,22 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
       {({ deviceType }) => {
         return (
           <div
-            className={clsx(styles.container, deviceType === DeviceType.DESKTOP && styles.container__desktop, deviceType === DeviceType.MOBILE && styles.container__mobile)}
+            className={clsx(
+              styles.container,
+              deviceType === DeviceType.DESKTOP && styles.container__desktop,
+              deviceType === DeviceType.MOBILE && styles.container__mobile,
+            )}
           >
             <div className={styles.item}>
               <Anchor href={`/product/${item.product.id}`}>
                 <div className={styles.itemInner}>
                   {thumbnailFile ? (
                     <div
-                      className={clsx(styles.thumbnail, deviceType === DeviceType.DESKTOP && styles.thumbnail__desktop, deviceType === DeviceType.MOBILE && styles.thumbnail__mobile)}
+                      className={clsx(
+                        styles.thumbnail,
+                        deviceType === DeviceType.DESKTOP && styles.thumbnail__desktop,
+                        deviceType === DeviceType.MOBILE && styles.thumbnail__mobile,
+                      )}
                     >
                       <AspectRatio ratioHeight={9} ratioWidth={16}>
                         <Image fill src={thumbnailFile.filename} />
@@ -56,15 +64,17 @@ export const CartItem: FC<Props> = ({ item, onRemove, onUpdate }) => {
                   ) : null}
                   <div className={styles.details}>
                     <p className={styles.itemName}>{item.product.name}</p>
-                    <p className={styles.itemPrice}>
-                      {currencyFormatter.format(price, { code: 'JPY', precision: 0 })}
-                    </p>
+                    <p className={styles.itemPrice}>{currencyFormatter.format(price, { code: 'JPY', precision: 0 })}</p>
                   </div>
                 </div>
               </Anchor>
             </div>
             <div
-              className={clsx(styles.container, deviceType === DeviceType.DESKTOP && styles.container__desktop, deviceType === DeviceType.MOBILE && styles.container__mobile)}
+              className={clsx(
+                styles.container,
+                deviceType === DeviceType.DESKTOP && styles.container__desktop,
+                deviceType === DeviceType.MOBILE && styles.container__mobile,
+              )}
             >
               <label className={styles.counter}>
                 個数:

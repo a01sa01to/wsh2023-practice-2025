@@ -8,7 +8,7 @@ const Icons = {
   FaPlay,
   FaShoppingCart,
   FaUser,
-}
+};
 
 type Props = {
   type: keyof typeof Icons;

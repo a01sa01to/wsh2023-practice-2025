@@ -1,7 +1,6 @@
 .cardList {
   align-items: center;
   display: flex;
-  height: 206px;
   overflow-x: scroll;
   padding: 8px 0;
   width: 100%;

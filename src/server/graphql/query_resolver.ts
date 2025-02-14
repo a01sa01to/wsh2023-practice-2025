@@ -19,30 +19,133 @@ type QueryResolver = {
 export const queryResolver: QueryResolver = {
   feature: (_parent, args) => {
     return dataSource.manager.findOneOrFail(FeatureSection, {
-      where: { id: args.id },
+      relations: {
+        items: {
+          product: {
+            media: {
+              file: true,
+            },
+            offers: true,
+          },
+        }
+      },
+      select: {
+        id: true,
+        items: {
+          id: true,
+          product: {
+            id: true,
+            name: true,
+            price: true,
+            media: {
+              isThumbnail: true,
+              file: {
+                filename: true,
+              }
+            },
+            offers: {
+              id: true,
+              price: true,
+              startDate: true,
+              endDate: true,
+            }
+          }
+        },
+        title: true,
+      },
+      where: {
+        id: args.id,
+        items: {
+          product: {
+            media: {
+              isThumbnail: true,
+            }
+          }
+        }
+      },
     });
   },
   features: () => {
-    return dataSource.manager.find(FeatureSection);
+    return dataSource.manager.find(FeatureSection, {
+      select: {
+        id: true,
+        title: true,
+      },
+    });
   },
   me: async (_parent, _args, { session }) => {
     if (session['userId'] == null) {
       return null;
     }
     return dataSource.manager.findOneOrFail(User, {
+      relations: {
+        orders: true,
+        profile: {
+          avatar: true,
+        },
+        reviews: true,
+      },
       where: { id: session['userId'] },
     });
   },
   product: (_parent, args) => {
     return dataSource.manager.findOneOrFail(Product, {
+      relations: {
+        media: {
+          file: true,
+        },
+        offers: true,
+        reviews: {
+          user: {
+            profile: {
+              avatar: true,
+            },
+          }
+        },
+      },
       where: { id: args.id },
     });
   },
   recommendations: () => {
-    return dataSource.manager.find(Recommendation);
+    return dataSource.manager.find(Recommendation, {
+      relations: {
+        product: {
+          media: {
+            file: true,
+          },
+        },
+      },
+      select: {
+        id: true,
+        product: {
+          id: true,
+          name: true,
+          media: {
+            isThumbnail: true,
+            file: {
+              filename: true,
+            }
+          }
+        }
+      },
+      where: {
+        product: {
+          media: {
+            isThumbnail: true,
+          }
+        }
+      }
+    });
   },
   user: (_parent, args) => {
     return dataSource.manager.findOneOrFail(User, {
+      relations: {
+        orders: true,
+        profile: {
+          avatar: true,
+        },
+        reviews: true,
+      },
       where: { id: args.id },
     });
   },

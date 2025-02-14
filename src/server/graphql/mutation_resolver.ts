@@ -1,4 +1,3 @@
-import { Temporal } from '@js-temporal/polyfill';
 import * as bcrypt from 'bcrypt';
 import type { GraphQLFieldResolver } from 'graphql';
 

@@ -54,7 +54,7 @@ export const Order: FC = () => {
                 },
               }).then((res) => {
                 if (res.error) throw handleError(res.error);
-                reloadAuthUser({ requestPolicy: 'network-only' })
+                reloadAuthUser({ requestPolicy: 'network-only' });
               });
             }}
             onUpdateCartItem={(productId, amount) => {
@@ -65,7 +65,7 @@ export const Order: FC = () => {
                 },
               }).then((res) => {
                 if (res.error) throw handleError(res.error);
-                reloadAuthUser({ requestPolicy: 'network-only' })
+                reloadAuthUser({ requestPolicy: 'network-only' });
               });
             }}
             order={order}
@@ -82,12 +82,14 @@ export const Order: FC = () => {
                     address: `${values.prefecture}${values.city}${values.streetAddress}`,
                     zipCode: values.zipCode,
                   },
-                }).then((res) => {
-                  if (res.error) throw handleError(res.error);
-                  reloadAuthUser({ requestPolicy: 'network-only' })
-                }).then(() => {
-                  navigate('/order/complete');
-                });
+                })
+                  .then((res) => {
+                    if (res.error) throw handleError(res.error);
+                    reloadAuthUser({ requestPolicy: 'network-only' });
+                  })
+                  .then(() => {
+                    navigate('/order/complete');
+                  });
               }}
             />
           </Suspense>

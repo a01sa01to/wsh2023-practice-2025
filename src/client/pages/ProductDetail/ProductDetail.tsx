@@ -30,7 +30,7 @@ export const ProductDetail: FC = () => {
   const handleOpenModal = useOpenModal();
   const { amountInCart } = useAmountInCart(Number(productId));
   const { activeOffer } = useActiveOffer(product?.offers ?? []);
-  const handleError = useErrorHandler()
+  const handleError = useErrorHandler();
 
   const handleSubmitReview = ({ comment }: { comment: string }) => {
     sendReview({
@@ -40,8 +40,8 @@ export const ProductDetail: FC = () => {
       },
     }).then((res) => {
       if (res.error) throw handleError(res.error);
-      reloadProduct({ requestPolicy: 'network-only' })
-    })
+      reloadProduct({ requestPolicy: 'network-only' });
+    });
   };
 
   const handleUpdateItem = (productId: number, amount: number) => {
@@ -49,7 +49,7 @@ export const ProductDetail: FC = () => {
       variables: { amount: normalizeCartItemCount(amount), productId },
     }).then((res) => {
       if (res.error) throw handleError(res.error);
-      reloadAuthUser({ requestPolicy: 'network-only' })
+      reloadAuthUser({ requestPolicy: 'network-only' });
     });
   };
 

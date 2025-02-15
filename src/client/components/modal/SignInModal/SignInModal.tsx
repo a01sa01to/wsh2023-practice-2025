@@ -16,7 +16,10 @@ import styles from './SignInModal.module.css';
 // NOTE: 文字列に @ が含まれているか確認する
 const emailSchema = v.pipe(v.string(), v.includes('@'));
 // NOTE: 文字列に英数字以外の文字が含まれているか確認する
-const passwordSchema = v.pipe(v.string(), v.custom((val) => typeof val === 'string' && !/^[a-zA-Z0-9]*$/.test(val)));
+const passwordSchema = v.pipe(
+  v.string(),
+  v.custom((val) => typeof val === 'string' && !/^[a-zA-Z0-9]*$/.test(val)),
+);
 
 export type SignInForm = {
   email: string;
@@ -26,7 +29,7 @@ export type SignInForm = {
 export const SignInModal: FC = () => {
   const isOpened = useIsOpenModal('SIGN_IN');
   const { signIn } = useSignIn();
-  const { reloadAuthUser } = useAuthUser()
+  const { reloadAuthUser } = useAuthUser();
 
   const handleOpenModal = useOpenModal();
   const handleCloseModal = useCloseModal();
@@ -46,8 +49,8 @@ export const SignInModal: FC = () => {
           },
         }).then((res) => {
           if (res.error) throw res.error;
-          reloadAuthUser({ requestPolicy: 'network-only' })
-        })
+          reloadAuthUser({ requestPolicy: 'network-only' });
+        });
         resetForm();
         setSubmitError(null);
         handleCloseModal();

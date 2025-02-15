@@ -6,7 +6,6 @@ import { SignUpModal } from '../../modal/SignUpModal';
 import { Providers } from '../Providers';
 import { Routes } from '../Routes';
 
-
 import resetStyle from 'modern-css-reset/src/reset.css?raw';
 import rootStyle from './root.css?raw';
 

@@ -4,7 +4,9 @@ import type { UpdateItemInShoppingCartMutationResponse } from '../graphql/mutati
 import { UpdateItemInShoppingCartMutation } from '../graphql/mutations';
 
 export const useUpdateCartItem = () => {
-  const [updateCartItemRes, updateCartItem] = useMutation<UpdateItemInShoppingCartMutationResponse>(UpdateItemInShoppingCartMutation);
+  const [updateCartItemRes, updateCartItem] = useMutation<UpdateItemInShoppingCartMutationResponse>(
+    UpdateItemInShoppingCartMutation,
+  );
 
   return { updateCartItem };
 };

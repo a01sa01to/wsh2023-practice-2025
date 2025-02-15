@@ -39,8 +39,8 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
   return (
     <div className={styles.container}>
       {renderActiveOffer()}
-      <p className={styles.productName}>{product?.name ?? "Loading..."}</p>
-      <p className={styles.productDescription}>{product?.description ?? "Loading..."}</p>
+      <p className={styles.productName}>{product?.name ?? 'Loading...'}</p>
+      <p className={styles.productDescription}>{product?.description ?? 'Loading...'}</p>
 
       <div className={styles.priceWrapper}>
         {activeOffer !== undefined ? (

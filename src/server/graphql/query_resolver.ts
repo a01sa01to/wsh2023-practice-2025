@@ -94,7 +94,7 @@ export const queryResolver: QueryResolver = {
                 },
               },
             },
-          }
+          },
         },
         profile: {
           avatar: true,
@@ -169,7 +169,7 @@ export const queryResolver: QueryResolver = {
                 user: {
                   profile: {
                     avatar: true,
-                  }
+                  },
                 },
               },
             },

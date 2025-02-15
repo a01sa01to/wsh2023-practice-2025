@@ -7,15 +7,17 @@ import { Image } from '../../../foundation/Image';
 import styles from './MediaItemPreiewer.module.css';
 
 type Props = {
-  file: MediaFileFragmentResponse;
+  file?: MediaFileFragmentResponse;
 };
 
 export const MediaItemPreviewer: FC<Props> = ({ file }) => {
+  if (!file) return null
+
   const type = getMediaType(file.filename);
 
   return (
     <div className={styles.container}>
-      {type === 'image' && <Image fill src={file.filename} />}
+      {type === 'image' && <Image fill decoding='sync' loading='eager' src={file.filename} />}
       {type === 'video' && <video autoPlay controls muted playsInline className={styles.video} src={file.filename} />}
     </div>
   );

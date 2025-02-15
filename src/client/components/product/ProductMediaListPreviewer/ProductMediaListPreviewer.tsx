@@ -16,18 +16,16 @@ type Props = {
 export const ProductMediaListPreviewer: FC<Props> = ({ product }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  if (product === undefined || product.media.length === 0) {
-    return null;
-  }
-
   return (
     <div className={styles.container}>
       <AspectRatio ratioHeight={9} ratioWidth={16}>
-        <MediaItemPreviewer file={product.media[activeIndex].file} />
+        <MediaItemPreviewer file={product?.media[activeIndex].file} />
       </AspectRatio>
       <div className={styles.itemListWrapper}>
         <ul className={styles.itemList}>
-          {product.media.map((media, index) => {
+          {/* 高さを変えないためにあらかじめ 1 要素入れとく */}
+          {!product && <li className={styles.item} />}
+          {(product?.media ?? []).map((media, index) => {
             const disabled = index === activeIndex;
 
             return (

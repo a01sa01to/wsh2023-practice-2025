@@ -1,17 +1,24 @@
-import type { FC } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Layout } from '../../components/application/Layout';
 import { ProductList } from '../../components/feature/ProductList';
 import { ProductHeroImage } from '../../components/product/ProductHeroImage';
-import { useFeatures } from '../../hooks/useFeatures';
-import { useRecommendation } from '../../hooks/useRecommendation';
+import type { GetFeatureSectionsQueryResponse, GetRecommendationsQueryResponse } from '../../graphql/queries';
 
 import styles from './Top.module.css';
 
 export const Top: FC = () => {
-  const { recommendation } = useRecommendation();
-  const { features } = useFeatures();
+  const [recommendation, setRecommendation] = useState<GetRecommendationsQueryResponse['recommendations'][0] | undefined>(undefined)
+  const [features, setFeatures] = useState<GetFeatureSectionsQueryResponse['features'] | undefined>(undefined)
+
+  useEffect(() => {
+    const hour = new Date().getUTCHours();
+    const recommendations = (window as any).__data?.recommendations;
+
+    setRecommendation(recommendations[hour % recommendations.length]);
+    setFeatures((window as any).__data?.features);
+  }, [])
 
   return (
     <>

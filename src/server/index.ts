@@ -16,6 +16,7 @@ import { dataSource } from './data_source';
 import { initializeApolloServer } from './graphql';
 import { initializeDatabase } from './utils/initialize_database';
 import { rootResolve } from './utils/root_resolve';
+import { readFile } from 'node:fs/promises';
 
 const PORT = Number(process.env.PORT ?? 8080);
 
@@ -36,7 +37,78 @@ async function init(): Promise<void> {
     if (['/fonts', '/images', '/icons', '/videos', '/robots.txt'].some((path) => ctx.path.startsWith(path))) {
       ctx.set('Cache-Control', 'public, max-age=86400, immutable');
     }
+
     await next();
+
+    if (ctx.path === '/') {
+      const res = ctx.response;
+      let body = ""
+      for await (const chunk of res.body) body += chunk;
+
+      const graphqlQuery = `
+query {
+  recommendations {
+    ...RecommendationFragment
+  }
+  features {
+    ...FeatureSectionFragment
+  }
+}
+fragment RecommendationFragment on Recommendation  {
+  product {
+    id
+    name
+    media {
+      isThumbnail
+      file {
+        filename
+      }
+    }
+  }
+}
+fragment FeatureSectionFragment on FeatureSection {
+  id
+  title
+  items {
+    ...FeatureItemFragment
+  }
+}
+fragment FeatureItemFragment on FeatureItem {
+  product {
+    id
+    name
+    price
+    media {
+      isThumbnail
+      file {
+        filename
+      }
+    }
+    offers {
+      ...LimitedTimeOfferFragment
+    }
+  }
+}
+fragment LimitedTimeOfferFragment on LimitedTimeOffer {
+  id
+  price
+  startDate
+  endDate
+}`
+
+      const queryResponse = await apolloServer.executeOperation({ query: graphqlQuery })
+      if (queryResponse.body.kind !== 'single') return;
+
+      body = body.replace("</head>", `<script type="module">window.__data = ${JSON.stringify(queryResponse.body.singleResult.data)}</script></head>`);
+      res.body = body
+    }
+    if (ctx.path.startsWith("/product/")) {
+      const res = ctx.response;
+      let body = ""
+      for await (const chunk of res.body) body += chunk;
+      body = body.replace("</head>", '<script type="module"></script></head>');
+      res.body = body
+    }
   });
 
   const apolloServer = await initializeApolloServer();

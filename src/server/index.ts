@@ -16,7 +16,6 @@ import { dataSource } from './data_source';
 import { initializeApolloServer } from './graphql';
 import { initializeDatabase } from './utils/initialize_database';
 import { rootResolve } from './utils/root_resolve';
-import { readFile } from 'node:fs/promises';
 
 const PORT = Number(process.env.PORT ?? 8080);
 
@@ -102,11 +101,82 @@ fragment LimitedTimeOfferFragment on LimitedTimeOffer {
       body = body.replace("</head>", `<script type="module">window.__data = ${JSON.stringify(queryResponse.body.singleResult.data)}</script></head>`);
       res.body = body
     }
+
     if (ctx.path.startsWith("/product/")) {
+      const id = Number.parseInt(ctx.path.split("/")[2], 10);
+
       const res = ctx.response;
       let body = ""
       for await (const chunk of res.body) body += chunk;
-      body = body.replace("</head>", '<script type="module"></script></head>');
+
+      const graphqlQuery = `
+query GetProductDetails($productId: Int!) {
+  product(id: $productId) {
+    ...ProductWithReviewFragment
+  }
+}
+fragment ProductWithReviewFragment on Product {
+  ...ProductFragment
+  reviews {
+    ...ReviewFragment
+  }
+}
+fragment ProductFragment on Product {
+  id
+  name
+  price
+  description
+  media {
+    ...ProductMediaFragment
+  }
+  offers {
+    ...LimitedTimeOfferFragment
+  }
+}
+fragment ProductMediaFragment on ProductMedia {
+  id
+  isThumbnail
+  file {
+    ...MediaFileFragment
+  }
+}
+fragment MediaFileFragment on MediaFile {
+  id
+  filename
+}
+fragment LimitedTimeOfferFragment on LimitedTimeOffer {
+  id
+  price
+  startDate
+  endDate
+}
+fragment ReviewFragment on Review {
+  id
+  postedAt
+  comment
+  user {
+    ...UserFragment
+  }
+}
+fragment UserFragment on User {
+  id
+  email
+  profile {
+    ...ProfileFragment
+  }
+}
+fragment ProfileFragment on Profile {
+  id
+  name
+  avatar {
+    ...MediaFileFragment
+  }
+}`
+
+      const queryResponse = await apolloServer.executeOperation({ query: graphqlQuery, variables: { productId: id } })
+      if (queryResponse.body.kind !== 'single') return;
+
+      body = body.replace("</head>", `<script type="module">window.__data = ${JSON.stringify(queryResponse.body.singleResult.data)}</script></head>`);
       res.body = body
     }
   });

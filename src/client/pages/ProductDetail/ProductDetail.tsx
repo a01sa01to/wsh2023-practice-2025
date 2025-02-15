@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { useEffect, useState, type FC } from 'react';
 import { useErrorHandler } from 'react-error-boundary';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { ProductMediaListPreviewer } from '../../components/product/ProductMedia
 import { ProductOverview } from '../../components/product/ProductOverview';
 import { ProductPurchaseSection } from '../../components/product/ProductPurchaseSeciton';
 import { ReviewSection } from '../../components/review/ReviewSection';
+import { GetProductDetailsQuery, type GetProductDetailsQueryResponse } from '../../graphql/queries';
 import { useActiveOffer } from '../../hooks/useActiveOffer';
 import { useAmountInCart } from '../../hooks/useAmountInCart';
 import { useAuthUser } from '../../hooks/useAuthUser';
@@ -23,7 +24,10 @@ import styles from './ProductDetail.module.css';
 export const ProductDetail: FC = () => {
   const { productId } = useParams();
 
-  const { product, reloadProduct } = useProduct(Number(productId));
+  const [queryPause, setQueryPause] = useState(true);
+  const [product, setProduct] = useState<GetProductDetailsQueryResponse['product'] | undefined>(undefined);
+
+  const { product: _product, reloadProduct } = useProduct(Number(productId), queryPause);
   const { isAuthUser, reloadAuthUser } = useAuthUser();
   const { sendReview } = useSendReview();
   const { updateCartItem } = useUpdateCartItem();
@@ -31,6 +35,10 @@ export const ProductDetail: FC = () => {
   const { amountInCart } = useAmountInCart(Number(productId));
   const { activeOffer } = useActiveOffer(product?.offers ?? []);
   const handleError = useErrorHandler();
+
+  useEffect(() => {
+    setProduct((window as any).__data.product);
+  }, []);
 
   const handleSubmitReview = ({ comment }: { comment: string }) => {
     sendReview({
@@ -40,7 +48,9 @@ export const ProductDetail: FC = () => {
       },
     }).then((res) => {
       if (res.error) throw handleError(res.error);
+      setQueryPause(false);
       reloadProduct({ requestPolicy: 'network-only' });
+      setProduct(_product)
     });
   };
 

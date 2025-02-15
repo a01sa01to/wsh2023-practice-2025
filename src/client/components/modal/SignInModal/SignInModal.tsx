@@ -13,13 +13,10 @@ import { TextInput } from '../../foundation/TextInput';
 
 import styles from './SignInModal.module.css';
 
-const NOT_INCLUDED_AT_CHAR_REGEX = /^(?:[^@]*){6,}$/;
-const NOT_INCLUDED_SYMBOL_CHARS_REGEX = /^(?:(?:[a-zA-Z0-9]*){2,})+$/;
-
 // NOTE: 文字列に @ が含まれているか確認する
-const emailSchema = z.string().refine((v) => !NOT_INCLUDED_AT_CHAR_REGEX.test(v));
+const emailSchema = z.string().refine((v) => v.includes("@"));
 // NOTE: 文字列に英数字以外の文字が含まれているか確認する
-const passwordSchema = z.string().refine((v) => !NOT_INCLUDED_SYMBOL_CHARS_REGEX.test(v));
+const passwordSchema = z.string().refine((v) => !/^[a-zA-Z0-9]*$/.test(v));
 
 export type SignInForm = {
   email: string;

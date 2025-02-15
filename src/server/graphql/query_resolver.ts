@@ -8,7 +8,6 @@ import type { Context } from '../context';
 import { dataSource } from '../data_source';
 
 type QueryResolver = {
-  feature: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<FeatureSection>>;
   features: GraphQLFieldResolver<unknown, Context, never, Promise<FeatureSection[]>>;
   me: GraphQLFieldResolver<unknown, Context, never, Promise<User | null>>;
   product: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<Product>>;
@@ -17,8 +16,8 @@ type QueryResolver = {
 };
 
 export const queryResolver: QueryResolver = {
-  feature: (_parent, args) => {
-    return dataSource.manager.findOneOrFail(FeatureSection, {
+  features: () => {
+    return dataSource.manager.find(FeatureSection, {
       relations: {
         items: {
           product: {
@@ -51,24 +50,6 @@ export const queryResolver: QueryResolver = {
             price: true,
           },
         },
-        title: true,
-      },
-      where: {
-        id: args.id,
-        items: {
-          product: {
-            media: {
-              isThumbnail: true,
-            },
-          },
-        },
-      },
-    });
-  },
-  features: () => {
-    return dataSource.manager.find(FeatureSection, {
-      select: {
-        id: true,
         title: true,
       },
     });

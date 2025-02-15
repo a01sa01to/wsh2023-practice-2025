@@ -12,7 +12,6 @@ import { useActiveOffer } from '../../hooks/useActiveOffer';
 import { useAmountInCart } from '../../hooks/useAmountInCart';
 import { useAuthUser } from '../../hooks/useAuthUser';
 import { useProduct } from '../../hooks/useProduct';
-import { useReviews } from '../../hooks/useReviews';
 import { useSendReview } from '../../hooks/useSendReview';
 import { useUpdateCartItem } from '../../hooks/useUpdateCartItems';
 import { useOpenModal } from '../../store/modal';
@@ -24,7 +23,6 @@ export const ProductDetail: FC = () => {
   const { productId } = useParams();
 
   const { product } = useProduct(Number(productId));
-  const { reviews } = useReviews(Number(productId));
   const { isAuthUser } = useAuthUser();
   const { sendReview } = useSendReview();
   const { updateCartItem } = useUpdateCartItem();
@@ -75,7 +73,7 @@ export const ProductDetail: FC = () => {
 
             <section className={styles.reviews}>
               <h2 className={styles.reviewsHeading}>レビュー</h2>
-              <ReviewSection hasSignedIn={isAuthUser} onSubmitReview={handleSubmitReview} reviews={reviews} />
+              <ReviewSection hasSignedIn={isAuthUser} onSubmitReview={handleSubmitReview} reviews={product?.reviews} />
             </section>
           </div>
         </WidthRestriction>

@@ -119,6 +119,9 @@ importers:
       http-graceful-shutdown:
         specifier: 3.1.13
         version: 3.1.13
+      jotai:
+        specifier: 2.12.0
+        version: 2.12.0(@types/react@18.0.24)(react@18.2.0)
       koa:
         specifier: 2.14.1
         version: 2.14.1
@@ -191,9 +194,6 @@ importers:
       react-router-dom:
         specifier: 6.4.5
         version: 6.4.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      recoil:
-        specifier: 0.7.6
-        version: 0.7.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       reflect-metadata:
         specifier: 0.1.13
         version: 0.1.13
@@ -2167,9 +2167,6 @@ packages:
     resolution: {integrity: sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
-  hamt_plus@1.0.2:
-    resolution: {integrity: sha512-t2JXKaehnMb9paaYA7J0BX8QQAY8lwfQ9Gjf4pg/mk4krt+cmwmU652HOoWonf+7+EQV97ARPMhhVgU1ra2GhA==}
-
   hard-rejection@2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
     engines: {node: '>=6'}
@@ -2518,6 +2515,18 @@ packages:
     resolution: {integrity: sha512-2P4SQ0HrLQ+fw6llpLnOaGAvN2Zu6778SJMrCUwns4fOoG9ayrTiZk3VV8sCPkVZF8ab0zksVpS8FDY5pRCNBA==}
     engines: {node: '>=10'}
     hasBin: true
+
+  jotai@2.12.0:
+    resolution: {integrity: sha512-j5B4NmUw8gbuN7AG4NufWw00rfpm6hexL2CVhKD7juoP2YyD9FEUV5ar921JMvadyrxQhU1NpuKUL3QfsAlVpA==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
 
   js-sdsl@4.4.2:
     resolution: {integrity: sha512-dwXFwByc/ajSV6m5bcKAPwe4yDDF6D614pxmIi5odytzxRlwqF6nwoiCek80Ixc7Cvma5awClxrzFtxCQvcM8w==}
@@ -3301,18 +3310,6 @@ packages:
   readdirp@3.6.0:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
-
-  recoil@0.7.6:
-    resolution: {integrity: sha512-hsBEw7jFdpBCY/tu2GweiyaqHKxVj6EqF2/SfrglbKvJHhpN57SANWvPW+gE90i3Awi+A5gssOd3u+vWlT+g7g==}
-    peerDependencies:
-      react: '>=16.13.1'
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
 
   redent@3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
@@ -6341,8 +6338,6 @@ snapshots:
 
   graphql@16.6.0: {}
 
-  hamt_plus@1.0.2: {}
-
   hard-rejection@2.1.0: {}
 
   has-bigints@1.1.0: {}
@@ -6673,6 +6668,11 @@ snapshots:
       chalk: 4.1.2
       filelist: 1.0.4
       minimatch: 3.1.2
+
+  jotai@2.12.0(@types/react@18.0.24)(react@18.2.0):
+    optionalDependencies:
+      '@types/react': 18.0.24
+      react: 18.2.0
 
   js-sdsl@4.4.2: {}
 
@@ -7503,13 +7503,6 @@ snapshots:
   readdirp@3.6.0:
     dependencies:
       picomatch: 2.3.1
-
-  recoil@0.7.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      hamt_plus: 1.0.2
-      react: 18.2.0
-    optionalDependencies:
-      react-dom: 18.2.0(react@18.2.0)
 
   redent@3.0.0:
     dependencies:

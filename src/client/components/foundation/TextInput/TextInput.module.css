@@ -14,8 +14,7 @@
   font-size: 1rem;
   font-weight: 400;
   padding: 8px;
-
-  &::placeholder {
-    color: #999999;
-  }
+}
+.input::placeholder {
+  color: #999999;
 }

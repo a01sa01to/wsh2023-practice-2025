@@ -7,7 +7,7 @@ import wasm from 'vite-plugin-wasm';
 export default defineConfig(async () => {
   return {
     build: {
-      target: 'esnext',
+      target: 'chrome132',
     },
     plugins: [
       visualizer(),

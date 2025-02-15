@@ -1,4 +1,4 @@
-import { type Review } from '../../model/review';
+import type { Review } from '../../model/review';
 
 import type { GraphQLModelResolver } from './model_resolver';
 

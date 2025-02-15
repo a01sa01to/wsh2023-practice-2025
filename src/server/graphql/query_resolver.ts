@@ -79,11 +79,29 @@ export const queryResolver: QueryResolver = {
     }
     return dataSource.manager.findOneOrFail(User, {
       relations: {
-        orders: true,
+        orders: {
+          items: {
+            product: {
+              media: {
+                file: true,
+              },
+              offers: true,
+              reviews: {
+                user: {
+                  profile: {
+                    avatar: true,
+                  },
+                },
+              },
+            },
+          }
+        },
         profile: {
           avatar: true,
         },
-        reviews: true,
+        reviews: {
+          product: true,
+        },
       },
       where: { id: session['userId'] },
     });
@@ -140,7 +158,23 @@ export const queryResolver: QueryResolver = {
   user: (_parent, args) => {
     return dataSource.manager.findOneOrFail(User, {
       relations: {
-        orders: true,
+        orders: {
+          items: {
+            product: {
+              media: {
+                file: true,
+              },
+              offers: true,
+              reviews: {
+                user: {
+                  profile: {
+                    avatar: true,
+                  }
+                },
+              },
+            },
+          },
+        },
         profile: {
           avatar: true,
         },

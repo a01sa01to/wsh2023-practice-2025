@@ -1,4 +1,4 @@
-import { type ProductMedia } from '../../model/product_media';
+import type { ProductMedia } from '../../model/product_media';
 
 import type { GraphQLModelResolver } from './model_resolver';
 

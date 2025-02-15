@@ -1,4 +1,4 @@
-import { type Profile } from '../../model/profile';
+import type { Profile } from '../../model/profile';
 
 import type { GraphQLModelResolver } from './model_resolver';
 

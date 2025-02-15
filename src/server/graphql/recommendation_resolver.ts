@@ -1,4 +1,4 @@
-import { type Recommendation } from '../../model/recommendation';
+import type { Recommendation } from '../../model/recommendation';
 
 import type { GraphQLModelResolver } from './model_resolver';
 

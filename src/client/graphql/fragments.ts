@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from 'urql';
 
 import type { FeatureSection } from '../../model/feature_section';
 import type { LimitedTimeOffer } from '../../model/limited_time_offer';

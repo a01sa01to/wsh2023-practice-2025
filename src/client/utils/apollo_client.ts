@@ -1,7 +1,6 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { cacheExchange, Client, fetchExchange } from 'urql';
 
-export const apolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  queryDeduplication: false,
-  uri: '/graphql',
+export const client = new Client({
+  exchanges: [cacheExchange, fetchExchange],
+  url: '/graphql',
 });

@@ -1,5 +1,5 @@
-import type { Context } from '@apollo/client';
 import type { GraphQLFieldResolver } from 'graphql';
+import { Context } from 'urql';
 
 import { FeatureSection } from '../../model/feature_section';
 import { Product } from '../../model/product';
@@ -8,12 +8,12 @@ import { User } from '../../model/user';
 import { dataSource } from '../data_source';
 
 type QueryResolver = {
-  feature: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<FeatureSection>>;
-  features: GraphQLFieldResolver<unknown, Context, never, Promise<FeatureSection[]>>;
-  me: GraphQLFieldResolver<unknown, Context, never, Promise<User | null>>;
-  product: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<Product>>;
-  recommendations: GraphQLFieldResolver<unknown, Context, never, Promise<Recommendation[]>>;
-  user: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<User>>;
+  feature: GraphQLFieldResolver<unknown, typeof Context, { id: number }, Promise<FeatureSection>>;
+  features: GraphQLFieldResolver<unknown, typeof Context, never, Promise<FeatureSection[]>>;
+  me: GraphQLFieldResolver<unknown, typeof Context, never, Promise<User | null>>;
+  product: GraphQLFieldResolver<unknown, typeof Context, { id: number }, Promise<Product>>;
+  recommendations: GraphQLFieldResolver<unknown, typeof Context, never, Promise<Recommendation[]>>;
+  user: GraphQLFieldResolver<unknown, typeof Context, { id: number }, Promise<User>>;
 };
 
 export const queryResolver: QueryResolver = {

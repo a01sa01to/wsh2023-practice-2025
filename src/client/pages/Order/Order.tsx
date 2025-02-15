@@ -1,4 +1,5 @@
 import { type FC, lazy, Suspense } from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,10 +18,11 @@ const OrderForm = lazy(() => import('../../components/order/OrderForm').then((mo
 export const Order: FC = () => {
   const navigate = useNavigate();
 
-  const { authUser, authUserLoading, isAuthUser } = useAuthUser();
+  const { authUser, authUserLoading, isAuthUser, reloadAuthUser } = useAuthUser();
   const { updateCartItem } = useUpdateCartItem();
   const { submitOrder } = useSubmitOrder();
   const { order } = useOrder();
+  const handleError = useErrorHandler();
 
   if (authUserLoading) {
     return null;
@@ -50,6 +52,9 @@ export const Order: FC = () => {
                   amount: 0,
                   productId,
                 },
+              }).then((res) => {
+                if (res.error) throw handleError(res.error);
+                reloadAuthUser({ requestPolicy: 'network-only' })
               });
             }}
             onUpdateCartItem={(productId, amount) => {
@@ -58,6 +63,9 @@ export const Order: FC = () => {
                   amount,
                   productId,
                 },
+              }).then((res) => {
+                if (res.error) throw handleError(res.error);
+                reloadAuthUser({ requestPolicy: 'network-only' })
               });
             }}
             order={order}
@@ -74,6 +82,9 @@ export const Order: FC = () => {
                     address: `${values.prefecture}${values.city}${values.streetAddress}`,
                     zipCode: values.zipCode,
                   },
+                }).then((res) => {
+                  if (res.error) throw handleError(res.error);
+                  reloadAuthUser({ requestPolicy: 'network-only' })
                 }).then(() => {
                   navigate('/order/complete');
                 });

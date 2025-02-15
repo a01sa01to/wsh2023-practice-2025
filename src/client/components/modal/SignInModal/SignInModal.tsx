@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { useState } from 'react';
 import * as z from 'zod';
 
+import { useAuthUser } from '../../../hooks/useAuthUser';
 import { useSignIn } from '../../../hooks/useSignIn';
 import { useCloseModal, useIsOpenModal, useOpenModal } from '../../../store/modal';
 import { Modal } from '../../foundation/Modal';
@@ -28,6 +29,7 @@ export type SignInForm = {
 export const SignInModal: FC = () => {
   const isOpened = useIsOpenModal('SIGN_IN');
   const { signIn } = useSignIn();
+  const { reloadAuthUser } = useAuthUser()
 
   const handleOpenModal = useOpenModal();
   const handleCloseModal = useCloseModal();
@@ -45,7 +47,10 @@ export const SignInModal: FC = () => {
             email: values.email,
             password: values.password,
           },
-        });
+        }).then((res) => {
+          if (res.error) throw res.error;
+          reloadAuthUser({ requestPolicy: 'network-only' })
+        })
         resetForm();
         setSubmitError(null);
         handleCloseModal();

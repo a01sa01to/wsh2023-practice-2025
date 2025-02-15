@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { useErrorHandler } from 'react-error-boundary';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
 
@@ -22,13 +23,14 @@ import styles from './ProductDetail.module.css';
 export const ProductDetail: FC = () => {
   const { productId } = useParams();
 
-  const { product } = useProduct(Number(productId));
-  const { isAuthUser } = useAuthUser();
+  const { product, reloadProduct } = useProduct(Number(productId));
+  const { isAuthUser, reloadAuthUser } = useAuthUser();
   const { sendReview } = useSendReview();
   const { updateCartItem } = useUpdateCartItem();
   const handleOpenModal = useOpenModal();
   const { amountInCart } = useAmountInCart(Number(productId));
   const { activeOffer } = useActiveOffer(product?.offers ?? []);
+  const handleError = useErrorHandler()
 
   const handleSubmitReview = ({ comment }: { comment: string }) => {
     sendReview({
@@ -36,12 +38,18 @@ export const ProductDetail: FC = () => {
         comment,
         productId: Number(productId),
       },
-    });
+    }).then((res) => {
+      if (res.error) throw handleError(res.error);
+      reloadProduct({ requestPolicy: 'network-only' })
+    })
   };
 
   const handleUpdateItem = (productId: number, amount: number) => {
     updateCartItem({
       variables: { amount: normalizeCartItemCount(amount), productId },
+    }).then((res) => {
+      if (res.error) throw handleError(res.error);
+      reloadAuthUser({ requestPolicy: 'network-only' })
     });
   };
 

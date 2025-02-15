@@ -2,7 +2,7 @@ import type { FormikErrors } from 'formik';
 import { useFormik } from 'formik';
 import type { FC } from 'react';
 import { useState } from 'react';
-import * as z from 'zod';
+import * as v from 'valibot';
 
 import { useAuthUser } from '../../../hooks/useAuthUser';
 import { useSignUp } from '../../../hooks/useSignUp';
@@ -14,9 +14,9 @@ import { TextInput } from '../../foundation/TextInput';
 import styles from './SignUpModal.module.css';
 
 // NOTE: 文字列に @ が含まれているか確認する
-const emailSchema = z.string().refine((v) => v.includes("@"));
+const emailSchema = v.pipe(v.string(), v.includes('@'));
 // NOTE: 文字列に英数字以外の文字が含まれているか確認する
-const passwordSchema = z.string().refine((v) => !/^[a-zA-Z0-9]*$/.test(v));
+const passwordSchema = v.pipe(v.string(), v.custom((val) => typeof val === 'string' && !/^[a-zA-Z0-9]*$/.test(val)));
 
 export type SignUpForm = {
   email: string;
@@ -60,10 +60,10 @@ export const SignUpModal: FC = () => {
     },
     validate(values) {
       const errors: FormikErrors<SignUpForm> = {};
-      if (values.email != '' && !emailSchema.safeParse(values.email).success) {
+      if (values.email != '' && !v.safeParse(emailSchema, values.email).success) {
         errors['email'] = 'メールアドレスの形式が間違っています';
       }
-      if (values.password != '' && !passwordSchema.safeParse(values.password).success) {
+      if (values.password != '' && !v.safeParse(passwordSchema, values.password).success) {
         errors['password'] = '英数字以外の文字を含めてください';
       }
       return errors;
